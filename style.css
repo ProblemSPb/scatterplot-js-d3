@@ -2,11 +2,15 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-self: center;
-    background-color: antiquewhite;
+    align-items: center;
+    background-color: lightgray;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
     text-align: center;
+}
+
+svg {
+    background-color:white;
 }
