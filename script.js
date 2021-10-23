@@ -10,6 +10,7 @@ const height = 600;
 const padding = 40;
 
 let svg = d3.select('svg');
+let tooltip = d3.select('#tooltip');
 
 function drawCanvas () {
     svg.attr('width', width);
@@ -56,6 +57,32 @@ function drawDataPoints () {
     })
     .attr('cy', (item) => {
         return yScale(new Date (item['Seconds'] * 1000));
+    })
+    // set color: orange if there were doping allegations, green - no doping allegations
+    .attr('fill', (item) => {
+        if (item['Doping'] != '') {
+            return 'Orange';
+        } else {
+            return 'Lightgreen'
+        }
+    })
+    // show tooltip when hover over a dor
+    .on('mouseover', (item) => {
+        tooltip.transition()
+                .style('visibility', 'visible');
+
+        if (item['Doping'] != '') {
+            tooltip.text("Name: " + item['Name'] + ". Time: " + item['Time'] + ". Doping: " + item['Doping'] + ".");
+        } else {
+            tooltip.text("Name: " + item['Name'] + ". Time: " + item['Time'] + ". No Allegations.");
+        }
+
+        tooltip.attr('data-year', item['Year'])
+    })
+    // hide tooltip
+    .on('mouseout', (item) => {
+        tooltip.transition()
+                .style('visibility', 'hidden');
     })
 
 }
