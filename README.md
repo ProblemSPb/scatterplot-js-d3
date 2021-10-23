@@ -1,4 +1,4 @@
-# bar-chart-js-d3
+# scatterplot-js-d3
 Bar chart: Visualisation of Doping in Professional Bicycle Racing.
 
 Tech: JavaScript, D3 library.
